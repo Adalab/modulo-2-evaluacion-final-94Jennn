@@ -1,8 +1,10 @@
-@import 'core/variables';
-@import 'core/reset';
-@import 'components/code';
-@import 'components/links';
-@import 'layout/page';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'pages/index';
+.columns{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.colorImg{
+    border: 10px solid blueviolet;
+}
