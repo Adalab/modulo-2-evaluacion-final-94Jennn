@@ -19,7 +19,7 @@ function handleImgClick(event) {
   const findSerie = normalSeries.find(
     (series) => idSeriesClicked === series.mal_id
   );
- console.log(normalSeries);
+  console.log(normalSeries);
 
   const indexFavourite = favouriteList.findIndex(
     (series) => idSeriesClicked === series.mal_id
@@ -28,13 +28,12 @@ function handleImgClick(event) {
 
   if (indexFavourite === -1) {
     favouriteList.push(findSerie);
-  } 
+  }
   console.log(favouriteList);
 
   event.target.classList.add("colorImg");
   favouriteAnime();
-  //localStorage meter todo el array de favoritos
-  localStorage.setItem('favouriteList', JSON.stringify(favouriteList));
+  localStorage.setItem("favouriteList", JSON.stringify(favouriteList));
 }
 
 function favouriteAnime() {
@@ -44,13 +43,13 @@ function favouriteAnime() {
     if (imageUrl === urlBad) {
       imageUrl = urlDefault;
     }
-    html2 += `<li>${favourite.title}`;
-    html2 += `<img src="${imageUrl}" alt="${favourite.title}" id="${favourite.mal_id}"></li>`;
+    html2 += `<li>${favourite.title}</li>`;
+    html2 += `<img src="${imageUrl}" alt="${favourite.title}" id="${favourite.mal_id}">`;
   }
 
-  favouriteSeries.innerHTML = html2;
+  favouriteSeries.innerHTML = `<ul>Series Favoritas ${html2}</ul>`;
 }
-console.log(favouriteAnime);
+
 
 function setupImageEvents() {
   const animeImg = document.querySelectorAll(".js-results img");
@@ -73,8 +72,8 @@ function getDataApi() {
         if (imageUrl === urlBad) {
           imageUrl = urlDefault;
         }
-        listHTML += `<li>${title}`;
-        listHTML += `<img src="${imageUrl}" alt="${title}" id="${normalSeries[i].mal_id}"></li>`;
+        listHTML += `<li>${title}</li>`;
+        listHTML += `<img src="${imageUrl}" alt="${title}" id="${normalSeries[i].mal_id}">`;
       }
       resultSeries.innerHTML = `<ul>Resultados${listHTML}</ul>`;
       setupImageEvents();
@@ -83,11 +82,8 @@ function getDataApi() {
 
 const handleClick = (event) => {
   event.preventDefault();
-  /*normalSeries = inputSearch.value;*/
   getDataApi();
 };
 
 btn.addEventListener("click", handleClick);
-
-//localStorage.setItem('favouriteList', JSON.stringify(favouriteList));
 
