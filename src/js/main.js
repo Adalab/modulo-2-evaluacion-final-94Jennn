@@ -5,6 +5,7 @@ const btn = document.querySelector(".js-btn");
 const inputSearch = document.querySelector(".js-search");
 const favouriteSeries = document.querySelector(".js-favourite");
 const resultSeries = document.querySelector(".js-results");
+const log = document.querySelector(".js-btnLog");
 let normalSeries = [];
 let favouriteList = [];
 const urlBad =
@@ -12,7 +13,24 @@ const urlBad =
 const urlDefault =
   "https://placehold.co/210x295/e95626/FFFFFF/png?text=Hello+Teacher";
 
-function handleImgClick(event) {
+
+function buttonLog(event) {
+  event.preventDefault();
+console.log('Tienes' + favouriteList.length + 'favoritos');
+// si en la lista fav tengo menos de 5, mensaje de : tienes pocs
+// y si no, mns: está arrrasando.
+if (favouriteList.length < 5) {
+  console.log('Tienes pocos');
+} else {
+    console.log('estas arrasando');
+}
+
+}
+
+
+log.addEventListener("click", buttonLog);
+
+  function handleImgClick(event) {
   const idSeriesClicked = parseInt(event.currentTarget.id);
   console.log(idSeriesClicked);
 
@@ -69,10 +87,12 @@ function getDataApi() {
       for (let i = 0; i < normalSeries.length; i++) {
         const title = normalSeries[i].title;
         let imageUrl = normalSeries[i].images.jpg.image_url;
+        let score = normalSeries[i].score;
         if (imageUrl === urlBad) {
           imageUrl = urlDefault;
         }
-        listHTML += `<li>${title}</li>`;
+        listHTML += `<li>${title}
+        ${score}</li>`;
         listHTML += `<img src="${imageUrl}" alt="${title}" id="${normalSeries[i].mal_id}">`;
       }
       resultSeries.innerHTML = `<ul>Resultados${listHTML}</ul>`;
